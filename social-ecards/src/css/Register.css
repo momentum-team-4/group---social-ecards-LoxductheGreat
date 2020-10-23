@@ -1,8 +1,5 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10rem;
+.form-container {
+    padding-top: 5rem;
 }
 
 .register-form {
@@ -11,8 +8,9 @@ body {
     justify-content: space-evenly;
     padding: 10px;
     background-color: white;
-
-}
+    justify-content: center;
+    align-items: center;
+}   
 
 .form-field {
     margin: 10px 0 10px 0;

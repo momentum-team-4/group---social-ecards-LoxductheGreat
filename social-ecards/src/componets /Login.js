@@ -4,10 +4,10 @@ import { Redirect } from 'react-router-dom'
 import '../css/Login.css'
 
 function Login (props) {
-  const [username, setusername] = useState(' ')
-  const [password, setpassword] = useState(' ')
-  const [fail, setfail] = useState(null)
-  const { authToken, nLogin } = props
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState(null)
+  const { authToken, onLogin } = props
 
   if (authToken) {
     return <Redirect to='/' />
@@ -17,34 +17,28 @@ function Login (props) {
     event.preventDefault()
 
     login(username, password)
-      .then(function (data) {
-        nLogin(data.auth_token)
+      .then(function (token) {
+        setMessage('Logged in. ')
+        onLogin(token)
       })
-      .catch(function (exit) {
-        if (exit.response && exit.response.status === 400) {
-          setfail('Invaild Credentials.')
+      .catch(function (error) {
+        if (error.response && error.response.status === 400) {
+          setMessage('Invaild Credentials.')
         }
       })
   }
 
-  function usernameInputChange (event) {
-    setusername({ ...username, username: event.traget.value })
-  }
-
-  function passwordInputChange (event) {
-    setpassword({ ...password, password: event.traget.value })
-  }
+  console.log(authToken)
 
   return (
     <div className='form-container'>
-      {fail &&
+      {message &&
         <div className='error-message'>
-          {fail}
+          {message}
         </div>}
       <div className='title'>Login</div>
       <form onSubmit={tryLogin} className='login-form'>
         <label
-          onChange={usernameInputChange}
           htmlFor='username'
         />
         <input
@@ -52,18 +46,21 @@ function Login (props) {
           className='form-field'
           placeholder='Username'
           name='username'
-          value={username.username}
+          required
+          value={username}
+          onChange={event => setUsername(event.target.value)}
         />
         <label
-          onChange={passwordInputChange}
           htmlFor='password'
         />
         <input
           type='password'
           className='form-field'
           placeholder='Password'
-          name='username'
-          value={password.password}
+          name='password'
+          required
+          value={password}
+          onChange={event => setPassword(event.target.value)}
         />
         <button className='form-field-bttn' type='submit'>
             Login

@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getcards } from './axios'
+import Cards from './Cards'
+// import { userData } from './axios'
 
-function Home () {
+function Home (props) {
+  const { authToken } = props
   return (
-    <h1>Home</h1>
+    <div>
+      <div className='h-title'>Home</div>
+      <Cards authToken={authToken} />
+    </div>
   )
 }
 

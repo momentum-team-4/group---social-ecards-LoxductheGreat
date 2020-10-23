@@ -1,8 +1,5 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10rem;
+.form-container {
+    padding-top: 5rem;
 }
 
 .login-form {
@@ -11,7 +8,8 @@ body {
     justify-content: space-evenly;
     padding: 10px;
     background-color: white;
-
+    justify-content: center;
+    align-items: center;
 }
 
 .form-field {
@@ -30,11 +28,11 @@ button {
     background-color: #3889DF ;
 }
 
-.title {
+.h-title {
     justify-content: center;
     text-align: center;
     padding: 10px;
     font-weight: bold;
     color: #3889DF ;
-    font-size: 20px;
+    font-size: 50px;
 }

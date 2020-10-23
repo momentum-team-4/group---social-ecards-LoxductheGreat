@@ -1,33 +1,42 @@
 import React, { useState } from 'react'
+import { register } from './axios.js'
+import { Redirect } from 'react-router-dom'
 import '../css/Register.css'
 
-function Register () {
-  const [username, setusername] = useState(' ')
-  const [password, setpassword] = useState(' ')
-  const [email, setemail] = useState(' ')
+function Register (props) {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState(null)
+  const { authToken, onRegister } = props
 
-  // nice
-  function usernameInputChange (event) {
-    setusername({ ...username, username: event.traget.value })
+  if (authToken) {
+    return <Redirect to='/' />
   }
 
-  function passwordInputChange (event) {
-    setpassword({ ...password, password: event.traget.value })
-  }
+  function tryregister (event) {
+    event.preventDefault()
 
-  function emailInputChange (event) {
-    setemail({ ...email, email: event.traget.value })
-  }
-
-  function submitRegister (event) {
+    register(username, password, email)
+      .then(function (token) {
+        setMessage('Welcome!')
+        onRegister(token)
+      })
+      // .catch(function (exit) {
+      //   if (exit.response && exit.response.status === 400) {
+      //     setMessage('I.')
+      //   }
   }
 
   return (
     <div className='form-container'>
+      {message &&
+        <div className='error-message'>
+          {message}
+        </div>}
       <div className='title'>Sign Up</div>
-      <form onSubmit={submitRegister} className='register-form'>
+      <form onSubmit={tryregister} className='register-form'>
         <label
-          onChange={usernameInputChange}
           htmlFor='username'
         />
         <input
@@ -35,10 +44,10 @@ function Register () {
           className='form-field'
           placeholder='Username'
           name='username'
-          value={username.username}
+          value={username}
+          onChange={event => setUsername(event.target.value)}
         />
         <label
-          onChange={passwordInputChange}
           htmlFor='password'
         />
         <input
@@ -46,10 +55,10 @@ function Register () {
           className='form-field'
           placeholder='Password'
           name='password'
-          value={password.password}
+          value={password}
+          onChange={event => setPassword(event.target.value)}
         />
         <label
-          onChange={emailInputChange}
           htmlFor='email'
         />
         <input
@@ -57,7 +66,8 @@ function Register () {
           className='form-field'
           placeholder='Email'
           name='email'
-          value={email.email}
+          value={email}
+          onChange={event => setEmail(event.target.value)}
         />
         <button className='form-field-bttn' type='submit'>
             Register
