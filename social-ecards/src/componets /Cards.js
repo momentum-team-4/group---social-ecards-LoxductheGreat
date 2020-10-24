@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getcards } from './axios'
+import Card from './Card'
 
 function Cards (props) {
   // Going to show the list of cards
@@ -13,18 +14,24 @@ function Cards (props) {
     })
   }, [authToken])
 
+  console.log(cards)
 
   return (
     <div>
       {cards.map(card => (
-        <div key={card.id}>
-          <div className='card-container'>
-            <div className='card-title'>{card.title}</div>
-            <div className='card-body'>{card.body}</div>
-          </div>
-        </div>
+        <Card key={card.id} card={card} />
       ))}
     </div>
+    // <div>
+    //   {cards.map(card => (
+    //     <div key={card.id}>
+    //       <div className='card-container'>
+    //         <div>{card.title}</div>
+    //         <div>{card.body}</div>
+    //       </div>
+    //     </div>
+    //   ))}
+    // </div>
   )
 }
 

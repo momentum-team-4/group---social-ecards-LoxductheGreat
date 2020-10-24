@@ -2,7 +2,9 @@
   list-style-type: none;
   display: flex;
   text-decoration: none;
-  margin:3rem;
+  margin-top:0;
+  margin-bottom: 3rem;
+  padding:0;
 }
 
 .nav-items {

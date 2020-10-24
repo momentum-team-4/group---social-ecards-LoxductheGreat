@@ -18,6 +18,10 @@ function Addcard (props) {
     return <Redirect to='/' />
   }
 
+  if (!authToken) {
+    return <Redirect to='/login' />
+  }
+
   function trySubmit (event) {
     event.preventDefault()
     createcards(authToken, title, body)
@@ -25,8 +29,6 @@ function Addcard (props) {
         setCreatecard(true)
       })
   }
-
-
 
   return (
 

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Register from './componets /Register'
 import Login from './componets /Login'
 import Home from './componets /Home'
-import addCard from './componets /Addcard'
 import { userData } from './componets /axios'
 import Addcard from './componets /Addcard'
 import Logout from './componets /Logout'
@@ -33,12 +32,6 @@ function App (props) {
     }
   }, [authToken])
 
-  // if (isLoggedIn) {
-  //   return (
-  //     <button onClick={setAuthToken(null)}>Logout</button>
-  //   )
-  // }
-
   function nicelogout (event) {
     _setAuthToken(null)
     window.localStorage.removeItem(authToken)
@@ -56,8 +49,6 @@ function App (props) {
           ) : (
             <li className='nav-items'><Link to='/login'>Login</Link></li>
           )}
-          {/* <li className='nav-items'><Link to='/login'>Login</Link></li>
-            <li className='nav-items'><Link to='/logout'>Logout</Link></li> */}
           <li className='nav-items'><Link to='/addcard'>New Card</Link></li>
           <li className='nav-items'><Link to='/register'>Register</Link></li>
         </ul>
@@ -74,9 +65,6 @@ function App (props) {
           <Route path='/addcard'>
             <Addcard authToken={authToken} />
           </Route>
-          {/* <Route path='/yourcards'>
-            <YourPost authToken={authToken} />
-          </Route> */}
           <Route path='/'>
             <Home authToken={authToken} />
           </Route>
