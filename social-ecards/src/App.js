@@ -39,22 +39,25 @@ function App (props) {
   //   )
   // }
 
+  function nicelogout (event) {
+    _setAuthToken(null)
+    window.localStorage.removeItem(authToken)
+  }
+
+  console.log(authToken)
+
   return (
     <Router>
       <div>
         <ul className='top-nav'>
           <li className='nav-items'><Link to='/'>Home</Link></li>
-          <li className='nav-items'><Link to='/login'>Login</Link></li>
-
-          {/* {isLoggedIn ? (<button onClick={() => {
-            setAuthToken(null)
-
-          }})} */}
-
-          {/* <li>{isLoggedIn ? <button onClick={() => {
-              setAuthToken(null)
-            }}>Logout</button>
-            </li> */}
+          {isLoggedIn ? (
+            <li className='nav-items'><Link to='/logout'>Logout</Link></li>
+          ) : (
+            <li className='nav-items'><Link to='/login'>Login</Link></li>
+          )}
+          {/* <li className='nav-items'><Link to='/login'>Login</Link></li>
+            <li className='nav-items'><Link to='/logout'>Logout</Link></li> */}
           <li className='nav-items'><Link to='/addcard'>New Card</Link></li>
           <li className='nav-items'><Link to='/register'>Register</Link></li>
         </ul>
@@ -66,13 +69,16 @@ function App (props) {
             <Login authToken={authToken} onLogin={setAuthToken} />
           </Route>
           <Route path='/logout'>
-            <Logout />
+            <Logout onLogout={nicelogout} />
           </Route>
           <Route path='/addcard'>
             <Addcard authToken={authToken} />
           </Route>
+          {/* <Route path='/yourcards'>
+            <YourPost authToken={authToken} />
+          </Route> */}
           <Route path='/'>
-            <Home />
+            <Home authToken={authToken} />
           </Route>
         </Switch>
       </div>

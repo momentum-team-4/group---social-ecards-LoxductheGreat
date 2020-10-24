@@ -18,7 +18,10 @@ function Cards (props) {
     <div>
       {cards.map(card => (
         <div key={card.id}>
-          <div>{card.body}</div>
+          <div className='card-container'>
+            <div className='card-title'>{card.title}</div>
+            <div className='card-body'>{card.body}</div>
+          </div>
         </div>
       ))}
     </div>

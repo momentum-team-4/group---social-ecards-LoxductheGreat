@@ -28,7 +28,7 @@ function Login (props) {
       })
   }
 
-  console.log(authToken)
+  // console.log(authToken)
 
   return (
     <div className='form-container'>
