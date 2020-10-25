@@ -5,9 +5,44 @@
   margin-top:0;
   margin-bottom: 3rem;
   padding:0;
+  text-decoration: none;
+
+  /* font-family:'Fira Sans', sans-serif ; */
+}
+
+li {
+  padding: 0.2rem;
+  color: aqua;
 }
 
 .nav-items {
-  padding: 0.2rem;
-  color: aqua;
+  text-decoration: none;
+}
+
+.Link {
+  text-decoration: none;
+}
+
+.dotted {
+  border-style:  5px black dotted;
+}
+
+/* * {
+  margin: auto;
+  padding: 0;
+
+} */
+
+.card-container {
+   /* margin-left: 2rem; */
+   padding-bottom: 2rem;
+   
+}
+
+.card-h {
+  display: flex;
+}
+
+.card-date {
+  padding-left: 0.5rem;
 }

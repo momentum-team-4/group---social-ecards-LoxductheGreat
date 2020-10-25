@@ -7,12 +7,13 @@ function Addcard (props) {
   // Add cards
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [border, setBorder] = useState('')
+  const [font, setFont] = useState('')
+  const [image, setImage] = useState('')
+  const [color, setColor] = useState('')
+
   const [createcard, setCreatecard] = useState(false)
   const { authToken } = props
-  //   const [author, setauthor] = useState('')
-  //   const [date, setDate] = useState('')
-  //   const [title, setTitle] = useState('')
-  //   const [title, setTitle] = useState('')
 
   if (createcard) {
     return <Redirect to='/' />
@@ -24,11 +25,13 @@ function Addcard (props) {
 
   function trySubmit (event) {
     event.preventDefault()
-    createcards(authToken, title, body)
+    createcards(authToken, title, body, border, color, font)
       .then(data => {
         setCreatecard(true)
       })
   }
+
+  
 
   return (
 
@@ -59,6 +62,32 @@ function Addcard (props) {
           value={body}
           onChange={event => setBody(event.target.value)}
         />
+        <select
+          value={border}
+          onChange={event => setBorder(event.target.value)}
+        >
+          <option value='none'>None</option>
+          <option value='solid'>Solid</option>
+          <option className='dotted' value='dotted'>Dotted</option>
+        </select>
+        <select
+          value={color}
+          onChange={event => setColor(event.target.value)}
+        >
+          <option value='none'>None</option>
+          <option value='black'>Black</option>
+          <option value='blue'>Blue</option>
+          <option value='red'>Red</option>
+        </select>
+        <select
+          value={font}
+          onChange={event => setFont(event.target.value)}
+        >
+          <option value='none'>None</option>
+          <option value='Times New Roman'>Times New Roman</option>
+          <option value='Helvetica'>Helvetica</option>
+          <option value='Open Sans'>Open Sans</option>
+        </select>
         <button className='form-field-bttn' type='submit'>
             Create Card!
         </button>

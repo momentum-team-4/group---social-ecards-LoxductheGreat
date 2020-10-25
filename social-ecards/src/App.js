@@ -43,14 +43,14 @@ function App (props) {
     <Router>
       <div>
         <ul className='top-nav'>
-          <li className='nav-items'><Link to='/'>Home</Link></li>
+          <li><Link className='nav-items' to='/'>Home</Link></li>
           {isLoggedIn ? (
-            <li className='nav-items'><Link to='/logout'>Logout</Link></li>
+            <li><Link className='nav-items' to='/logout'>Logout</Link></li>
           ) : (
-            <li className='nav-items'><Link to='/login'>Login</Link></li>
+            <li><Link className='nav-items' to='/login'>Login</Link></li>
           )}
-          <li className='nav-items'><Link to='/addcard'>New Card</Link></li>
-          <li className='nav-items'><Link to='/register'>Register</Link></li>
+          <li><Link className='nav-items' to='/addcard'>New Card</Link></li>
+          <li><Link className='nav-items' to='/register'>Register</Link></li>
         </ul>
         <Switch>
           <Route path='/register'>

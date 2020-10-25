@@ -26,10 +26,13 @@ export function userData (token) {
     .then(res => res.data)
 }
 
-export function createcards (token, title, body) {
+export function createcards (token, title, body, border, color, font, image) {
   return axios.post('https://clint-jameel-ecards.herokuapp.com/cards/', {
     title: title,
-    body: body
+    body: body,
+    border: border,
+    font: font,
+    color: color
   }, {
     headers: {
       Authorization: 'Token ' + token

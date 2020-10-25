@@ -1,8 +1,12 @@
-.card-title {
+/* .card-title {
     font-weight: bold;
 
+} */
+
+.card-author {
+    font-weight: bold;
 }
 
 .card-container {
-    
+   margin: 0 auto;
 }
