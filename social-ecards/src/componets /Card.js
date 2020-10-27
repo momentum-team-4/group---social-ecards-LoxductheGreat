@@ -1,5 +1,4 @@
 import React from 'react'
-import '../css/Card.css'
 
 function Card ({ card }) {
   function formatDate (props) {
@@ -7,8 +6,20 @@ function Card ({ card }) {
     return new Date().toDateString([], nice)
   }
 
+  const borderClass = (card) => {
+    return 'border-' + card.border
+  }
+
+  const fontClass = (card) => {
+    return 'font-' + card.font
+  }
+
+  const colorClass = (card) => {
+    return 'color-' + card.color
+  }
+
   return (
-    <div className='card-container'>
+    <div className={'card-container ' + borderClass(card)}>
       <div className='card-h'>
         <div className='card-author'>{card.author}</div>
         <div className='card-date'>{formatDate(card.date)}</div>
@@ -17,7 +28,7 @@ function Card ({ card }) {
         <div className='card-title'>{card.title}</div>
       </div>
       <div className>
-        <div className='card-body'>{card.body}</div>
+        <div className={'card-body ' + fontClass(card) + colorClass(card)}>{card.body}</div>
       </div>
     </div>
   )

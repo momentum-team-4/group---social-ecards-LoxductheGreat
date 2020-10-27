@@ -48,3 +48,30 @@ export function getcards (token) {
   })
     .then(res => res.data)
 }
+
+export function getFollowed (token) {
+  return axios.get('https://clint-jameel-ecards.herokuapp.com/friend_requests/', {
+    headers: {
+      Authorization: 'Token ' + token
+    }
+  })
+    .then(res => res.data)
+}
+
+export function getFollowers (token) {
+  return axios.get('', {
+    headers: {
+      Authorization: 'Token ' + token
+    }
+  })
+    .then(res => res.data)
+}
+
+export function getAllCards (token) {
+  return axios.get('https://clint-jameel-ecards.herokuapp.com/cards/all_cards/', {
+    headers: {
+      Authorization: 'Token ' + token
+    }
+  })
+    .then(res => res.data)
+}

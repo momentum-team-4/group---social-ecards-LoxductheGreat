@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import '../css/Addcard.css'
 import { createcards } from './axios'
+import '../css/App.css'
 
 function Addcard (props) {
   // Add cards
@@ -16,7 +16,7 @@ function Addcard (props) {
   const { authToken } = props
 
   if (createcard) {
-    return <Redirect to='/' />
+    return <Redirect to='/yourcards/' />
   }
 
   if (!authToken) {
@@ -31,12 +31,10 @@ function Addcard (props) {
       })
   }
 
-  
-
   return (
 
-    <div className='form-container'>
-      <h1 className='h-title'>Card Creation</h1>
+    <div className='addform-container'>
+      <h1 className='addform-title'>Card Creation</h1>
       <form onSubmit={trySubmit} className='addcard-form'>
         <label
           htmlFor='title'
@@ -55,13 +53,14 @@ function Addcard (props) {
         />
         <textarea
           type='text'
-          className='add-form-field'
+          className='add-form-field-body'
           placeholder='New card'
           name='body'
           required
           value={body}
           onChange={event => setBody(event.target.value)}
         />
+        <div>Border:</div>
         <select
           value={border}
           onChange={event => setBorder(event.target.value)}
@@ -70,6 +69,7 @@ function Addcard (props) {
           <option value='solid'>Solid</option>
           <option className='dotted' value='dotted'>Dotted</option>
         </select>
+        <div>Color:</div>
         <select
           value={color}
           onChange={event => setColor(event.target.value)}
@@ -79,6 +79,7 @@ function Addcard (props) {
           <option value='blue'>Blue</option>
           <option value='red'>Red</option>
         </select>
+        <div>Font:</div>
         <select
           value={font}
           onChange={event => setFont(event.target.value)}

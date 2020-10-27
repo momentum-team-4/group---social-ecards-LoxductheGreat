@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { getcards } from './axios'
 import Cards from './Cards'
+import AllCards from './AllCards'
+import '../css/App.css'
+
 // import { userData } from './axios'
 
 function Home (props) {
   const { authToken } = props
   return (
     <div>
-      <div className='h-title'>Home</div>
-      <Cards authToken={authToken} />
+      <div className='title-homepage'>Home</div>
+      <AllCards authToken={authToken} />
     </div>
   )
 }

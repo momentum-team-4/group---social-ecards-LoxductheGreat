@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { register } from './axios.js'
 import { Redirect } from 'react-router-dom'
-import '../css/Register.css'
+import '../css/App.css'
 
 function Register (props) {
   const [username, setUsername] = useState('')
@@ -22,10 +22,6 @@ function Register (props) {
         setMessage('Welcome!')
         onRegister(token)
       })
-      // .catch(function (exit) {
-      //   if (exit.response && exit.response.status === 400) {
-      //     setMessage('I.')
-      //   }
   }
 
   return (

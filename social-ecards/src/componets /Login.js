@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { login } from './axios.js'
 import { Redirect } from 'react-router-dom'
-import '../css/Login.css'
+import '../css/App.css'
 
 function Login (props) {
   const [username, setUsername] = useState('')
