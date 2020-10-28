@@ -5,11 +5,12 @@ import '../css/App.css'
 
 // import { userData } from './axios'
 
+
 function Home (props) {
   const { authToken } = props
   return (
     <div>
-      <div className='title-homepage'>Home</div>
+      <div className='title-homepage'>Cardify⚡</div>
       <AllCards authToken={authToken} />
     </div>
   )

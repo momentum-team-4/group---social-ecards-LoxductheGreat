@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './css/App.css'
-import { BrowserRouter as Router, Switch, Route, NavLink, NavNavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom'
 import Register from './componets /Register'
 import Login from './componets /Login'
 import Home from './componets /Home'
@@ -8,6 +8,7 @@ import { userData } from './componets /axios'
 import Addcard from './componets /Addcard'
 import Logout from './componets /Logout'
 import PersonalCards from './componets /Personal-Cards'
+import FriendsList from './componets /Friends'
 
 function App (props) {
   const [authToken, _setAuthToken] = useState(window.localStorage.getItem('authtoken'))
@@ -72,7 +73,7 @@ function App (props) {
             <PersonalCards authToken={authToken} />
           </Route>
           <Route path='/friends/'>
-            <friendList authToken={authToken} />
+            <FriendsList authToken={authToken} />
           </Route>
           <Route path='/'>
             <Home authToken={authToken} />

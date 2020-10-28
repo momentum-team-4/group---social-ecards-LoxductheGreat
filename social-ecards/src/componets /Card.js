@@ -1,10 +1,12 @@
 import React from 'react'
+import { format, parse } from 'fecha'
 
 function Card ({ card }) {
-  function formatDate (props) {
-    const nice = { year: 'numeric', month: 'long', day: 'day' }
-    return new Date().toDateString([], nice)
+  let date = card.date
+  if (typeof date === 'string') {
+    date = parse(date, 'isoDateTime')
   }
+  date = format(date, 'MMM D, h:mm A')
 
   const borderClass = (card) => {
     return 'border-' + card.border
@@ -19,16 +21,23 @@ function Card ({ card }) {
   }
 
   return (
-    <div className={'card-container ' + borderClass(card)}>
-      <div className='card-h'>
-        <div className='card-author'>{card.author}</div>
-        <div className='card-date'>{formatDate(card.date)}</div>
-      </div>
-      <div className>
-        <div className='card-title'>{card.title}</div>
-      </div>
-      <div className>
-        <div className={'card-body ' + fontClass(card) + colorClass(card)}>{card.body}</div>
+    <div className={'card-c ' + borderClass(card)}>
+      <div className='card-box'>
+        <div className='card-h'>
+          <div className='card-author'>{card.author}</div>
+          <div className='card-date'>{date}</div>
+        </div>
+        <div>
+          <div className='card-title'>{card.title}</div>
+        </div>
+        <div>
+          <div className={'card-body ' + colorClass(card) + ' ' + fontClass(card)}>{card.body}</div>
+          {card.image && (
+            <div>
+              <img src={card.image} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

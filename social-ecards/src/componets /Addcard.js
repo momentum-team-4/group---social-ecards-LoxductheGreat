@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Redirect } from 'react-router-dom'
-import { createcards } from './axios'
+import { createcards, uploadImage } from './axios'
 import '../css/App.css'
 
 function Addcard (props) {
@@ -9,9 +9,8 @@ function Addcard (props) {
   const [body, setBody] = useState('')
   const [border, setBorder] = useState('')
   const [font, setFont] = useState('')
-  const [image, setImage] = useState('')
+  const image = useRef(null)
   const [color, setColor] = useState('')
-
   const [createcard, setCreatecard] = useState(false)
   const { authToken } = props
 
@@ -25,10 +24,14 @@ function Addcard (props) {
 
   function trySubmit (event) {
     event.preventDefault()
+    const imagefile = image.current.files[0]
     createcards(authToken, title, body, border, color, font)
       .then(data => {
-        setCreatecard(true)
+        if (imagefile) {
+          return uploadImage(authToken, data.url, imagefile)
+        }
       })
+      .then(() => setCreatecard(true))
   }
 
   return (
@@ -60,7 +63,7 @@ function Addcard (props) {
           value={body}
           onChange={event => setBody(event.target.value)}
         />
-        <div>Border:</div>
+        <div>Border Style:</div>
         <select
           value={border}
           onChange={event => setBorder(event.target.value)}
@@ -69,7 +72,7 @@ function Addcard (props) {
           <option value='solid'>Solid</option>
           <option className='dotted' value='dotted'>Dotted</option>
         </select>
-        <div>Color:</div>
+        <div>Font Color:</div>
         <select
           value={color}
           onChange={event => setColor(event.target.value)}
@@ -79,16 +82,18 @@ function Addcard (props) {
           <option value='blue'>Blue</option>
           <option value='red'>Red</option>
         </select>
-        <div>Font:</div>
+        <div>Font Size:</div>
         <select
           value={font}
           onChange={event => setFont(event.target.value)}
         >
           <option value='none'>None</option>
-          <option value='Times New Roman'>Times New Roman</option>
-          <option value='Helvetica'>Helvetica</option>
-          <option value='Open Sans'>Open Sans</option>
+          <option value='Small'>Small</option>
+          <option value='Medium'>Medium</option>
+          <option value='Large'>Large</option>
         </select>
+        <label htmlFor='image'>Upload Image:</label>
+        <input ref={image} type='file' id='image' />
         <button className='form-field-bttn' type='submit'>
             Create Card!
         </button>

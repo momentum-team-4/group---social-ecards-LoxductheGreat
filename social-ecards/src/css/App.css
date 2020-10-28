@@ -33,6 +33,12 @@ a.active {
   font-weight: bolder;
 }
 
+img {
+  max-width: 20rem;
+  max-height: 7rem;
+}
+
+
 /* Login and Register page css */
 
 .form-container {
@@ -98,11 +104,11 @@ button {
 /* Personal cards css */
 
 
-.card-container {
+.card-box {
   
-   padding-bottom: 2rem;
+   /* padding-bottom: 2rem;
    padding-left: 38rem;
-   padding-top: 2rem;
+   padding-top: 2rem; */
 }
 
 .card-h {
@@ -117,9 +123,7 @@ button {
   font-weight: bold;
 }
 
-a.dotted {
-  border-style:  5px black dotted;
-}
+
 
 .title-personalcards {
   justify-content: center;
@@ -128,6 +132,16 @@ a.dotted {
   font-weight: bold;
   color: #3889DF ;
   font-size: 30px;
+}
+
+.card-c {
+  /* height: auto;
+  width: 10rem; */
+  width: 20rem;
+  padding: 2rem;
+  margin-left: 38rem;
+  margin-bottom: 1rem;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
 /* 
@@ -171,3 +185,40 @@ Add Card css
   align-items: center;
 }
 
+/* 
+
+Card options
+
+*/
+
+.color-red {
+  color: red;
+}
+
+.color-black {
+  color: black;
+}
+
+.color-blue {
+  color: blue;
+}
+
+.border-solid {
+  border: 5px black solid;
+}
+
+.border-dotted {
+  border:  5px black dotted;
+}
+
+.font-Small {
+  font-size: small;
+}
+
+.font-Medium {
+  font-size: medium;
+}
+
+.font-Large{
+  font-size: large;
+}

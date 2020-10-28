@@ -26,7 +26,7 @@ export function userData (token) {
     .then(res => res.data)
 }
 
-export function createcards (token, title, body, border, color, font, image) {
+export function createcards (token, title, body, border, color, font) {
   return axios.post('https://clint-jameel-ecards.herokuapp.com/cards/', {
     title: title,
     body: body,
@@ -50,7 +50,7 @@ export function getcards (token) {
 }
 
 export function getFollowed (token) {
-  return axios.get('https://clint-jameel-ecards.herokuapp.com/friend_requests/', {
+  return axios.get('https://clint-jameel-ecards.herokuapp.com/following/', {
     headers: {
       Authorization: 'Token ' + token
     }
@@ -59,7 +59,7 @@ export function getFollowed (token) {
 }
 
 export function getFollowers (token) {
-  return axios.get('', {
+  return axios.get('https://clint-jameel-ecards.herokuapp.com/following/', {
     headers: {
       Authorization: 'Token ' + token
     }
@@ -69,6 +69,25 @@ export function getFollowers (token) {
 
 export function getAllCards (token) {
   return axios.get('https://clint-jameel-ecards.herokuapp.com/cards/all_cards/', {
+    headers: {
+      Authorization: 'Token ' + token
+    }
+  })
+    .then(res => res.data)
+}
+
+export function uploadImage (token, cardUrl, image) {
+  return axios.put(cardUrl + 'image/', image, {
+    headers: {
+      Authorization: 'Token ' + token,
+      'Content-Type': image.type,
+      'Content-Disposition': `attachment; filename=${image.name}`
+    }
+  }).then(res => res.data)
+}
+
+export function getAuth (token, url) {
+  return axios.get(url, {
     headers: {
       Authorization: 'Token ' + token
     }

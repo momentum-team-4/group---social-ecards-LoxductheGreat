@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Friend from './Friend'
-import { getFollowed } from './axios'
+import { getFollowed, getFollowers } from './axios'
 
-function friendsList (props) {
+function FriendsList (props) {
   const { authToken } = props
   const [followed, setFollowed] = useState([])
+  const [followers, setFollowers] = useState(0)
 
   useEffect(() => {
     getFollowed(authToken).then(data => {
@@ -12,7 +13,19 @@ function friendsList (props) {
     })
   }, [authToken])
 
-  console.log(followed)
+  useEffect(() => {
+    getFollowers(authToken).then(data => {
+      setFollowers(data)
+    })
+  }, [authToken])
+
+  console.log(followers)
+
+
+
+  // console.log(followed)
+
+  // its not console logging data at all
 
   return (
     <div>
@@ -23,4 +36,4 @@ function friendsList (props) {
   )
 }
 
-export default friendsList
+export default FriendsList
